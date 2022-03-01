@@ -4,10 +4,13 @@ import android.content.Intent
 import android.graphics.drawable.AnimationDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import com.example.androidanimations.ScaleActivity
+import java.util.*
+import kotlin.concurrent.schedule
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,9 +31,14 @@ class MainActivity : AppCompatActivity() {
 
         backgroundLinearLayout.start()
         background.start()
+
+//        Вызов другого активити с задержкой
+        Timer("MyTimer", false).schedule(10000){
+            openScaleActivity()
+        }
     }
 
-    fun openScaleActivity(view: View) {
+    fun openScaleActivity() {
         intent = Intent(this, ScaleActivity::class.java)
         startActivity(intent)
     }
